@@ -2,8 +2,8 @@ import tornado.web
 import tornado.websocket
 import tornado.httpserver
 import tornado.ioloop
-import socketserver.buffer
-# from tornado.options import define, options
+# import socketserver.buffer
+from tornado.options import define, options
 
 clients = dict()
 
@@ -35,8 +35,8 @@ class MyWebSocketHandler(tornado.websocket.WebSocketHandler):
         clients[self.id] = {"id": self.id, "object": self}
 
     def on_message(self, message):
-        print("Client %s received a message: %s" % (message))
-        self.write_message('Copy that')
+        print("Client %s received a message: %s" % (self.id,message))
+#         self.write_message('Copy that')
         self.write_message(message)
 
     def on_close(self):
