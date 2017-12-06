@@ -32,15 +32,16 @@ def clientthread(conn):
 
     # send only takes string
     # infinite loop so that function do not terminate and thread do not end.
+    global bufferedrecv
     bufferedrecv = ''
     while True:
         # Receiving from client
         data = conn.recv(1024)
-        print(data)
-        bufferedrecv += data.decode("utf-8")
-#         reply = 'Copy that'
         if not data:
             break
+        bufferedrecv += data.decode("utf-8")
+#         reply = 'Copy that'
+        
 #         conn.sendall(reply.encode('utf-8'))
 
     # came out of loop
